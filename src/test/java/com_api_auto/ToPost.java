@@ -5,14 +5,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -70,8 +68,8 @@ public class ToPost {
         StringEntity stringEntity = new StringEntity("{name: \"google\"}");
         Map<String, String> header = new HashMap<String, String>();
 //        header.put("content-type","application/json");
-        header.put("host","177976bb-66ae-483b-8a26-c1943670c85a.mock.pstmn.io");
-        header.put("accept-encoding","gzip, deflate, br");
-        ToPost(url,stringEntity,header);
+        header.put("host", "177976bb-66ae-483b-8a26-c1943670c85a.mock.pstmn.io");
+        header.put("accept-encoding", "gzip, deflate, br");
+        ToPost(url, stringEntity, header);
     }
 }

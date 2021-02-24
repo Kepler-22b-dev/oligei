@@ -1,6 +1,5 @@
 package com_api_auto;
 
-import org.apache.commons.collections4.bag.SynchronizedSortedBag;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,8 +14,6 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com_api_auto.HttpClientUtil.ToGet;
 
 public class HttpClientUtil {
 
