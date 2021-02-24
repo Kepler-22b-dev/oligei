@@ -1,4 +1,4 @@
-package util;
+package com_api_auto;
 
 import okhttp3.ConnectionPool;
 import okhttp3.FormBody;
@@ -314,12 +314,13 @@ public class OkHttpClientUtils {
     }
 
     private static Request.Builder withBaseRequestBuilder() {
-//        String traceId = WebContextHolder.getTraceId();
+        //String traceId = WebContextHolder.getTraceId();
 //        String traceId = UuidGeneratorUtils.getNextId();
 //        logger.info("--->>>withBaseRequestBuilder traceId:{}", traceId);
-        Request.Builder requestBuilder = new Request.Builder()
+        Request.Builder requestBuilder;
+        requestBuilder = new Request.Builder()
                 .removeHeader("User-Agent")
-                .addHeader("trace_id", traceId)
+//                .addHeader("trace_id", traceId)
                 .addHeader("User-Agent", getUserAgent());
         return requestBuilder;
     }

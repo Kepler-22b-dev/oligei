@@ -1,232 +1,101 @@
-package util;
+package com_api_auto;
 
-import com.alibaba.fastjson.JSON;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.*;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HttpClientUtil {
-    private static CloseableHttpClient httpClient = HttpClients.createDefault();
 
     /**
-     * 带参数的get请求
-     */
-    public static HttpResult doGet(String url, Map<String, Object> map) throws Exception
-    {
-
-        // 声明URIBuilder
-        URIBuilder uriBuilder = new URIBuilder(url);
-
-        // 判断参数map是否为非空
-        if (map != null)
-        {
-            // 遍历参数
-            for (Map.Entry<String, Object> entry : map.entrySet())
-            {
-                // 设置参数
-                uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
-            }
-        }
-
-        // 2 创建httpGet对象，相当于设置url请求地址
-        HttpGet httpGet = new HttpGet(uriBuilder.build());
-
-        // 3 使用HttpClient执行httpGet
-        CloseableHttpResponse response = httpClient.execute(httpGet);
-
-        // 4 解析结果，封装返回对象httpResult，相当于显示相应的结果
-        // 状态码
-        // response.getStatusLine().getStatusCode();
-        // 响应体，字符串，如果response.getEntity()为空，下面这个代码会报错,所以解析之前要做非空的判断
-        // EntityUtils.toString(response.getEntity(), "UTF-8");
-        HttpResult httpResult = null;
-        // 解析数据封装HttpResult
-        if (response.getEntity() != null)
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(),
-                    EntityUtils.toString(response.getEntity(), "UTF-8"));
-
-        }
-        else
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(), "");
-        }
-
-        // 返回
-        return httpResult;
-    }
-
-    /**
-     * 不带参数的get请求
-     */
-    public static HttpResult doGet(String url) throws Exception
-    {
-        HttpResult httpResult = doGet(url, null);
-        return httpResult;
-    }
-
-    /**
-     * 带参数的post请求
-     */
-    public static HttpResult doPost(String url, Map<String, Object> reqMap, Map<String, String> headersMap)
-            throws Exception
-    {
-        // 声明httpPost请求
-        HttpPost httpPost = new HttpPost(url);
-        for (Map.Entry<String, String> entry : headersMap.entrySet())
-            httpPost.addHeader(entry.getKey(), entry.getValue());
-
-        // 判断map不为空
-        if (reqMap != null)
-        {
-
-            // 创建form表单对象
-            StringEntity formEntity = new StringEntity(JSON.toJSONString(reqMap), "UTF-8");
-
-            // 把表单对象设置到httpPost中
-            httpPost.setEntity(formEntity);
-        }
-
-        // 使用HttpClient发起请求，返回response
-        CloseableHttpResponse response = httpClient.execute(httpPost);
-
-        // 解析response封装返回对象httpResult
-        HttpResult httpResult = null;
-        if (response.getEntity() != null)
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(),
-                    EntityUtils.toString(response.getEntity(), "UTF-8"));
-        }
-        else
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(), "");
-        }
-
-        // 返回结果
-        return httpResult;
-    }
-
-    /**
-     * 不带参数的post请求
-     */
-    public static HttpResult doPost(String url) throws Exception
-    {
-        HttpResult httpResult = doPost(url, null, null);
-        return httpResult;
-    }
-
-    /**
-     * 带参数的Put请求
-     */
-    public static HttpResult doPut(String url, Map<String, Object> map) throws Exception
-    {
-        // 声明httpPost请求
-        HttpPut httpPut = new HttpPut(url);
-
-        // 判断map不为空
-        if (map != null)
-        {
-            // 声明存放参数的List集合
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            // 遍历map，设置参数到list中
-            for (Map.Entry<String, Object> entry : map.entrySet())
-            {
-                params.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
-            }
-
-            // 创建form表单对象
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
-
-            // 把表单对象设置到httpPost中
-            httpPut.setEntity(formEntity);
-        }
-
-        // 使用HttpClient发起请求，返回response
-        CloseableHttpResponse response = httpClient.execute(httpPut);
-
-        // 解析response封装返回对象httpResult
-        HttpResult httpResult = null;
-        if (response.getEntity() != null)
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(),
-                    EntityUtils.toString(response.getEntity(), "UTF-8"));
-        }
-        else
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(), "");
-        }
-
-        // 返回结果
-        return httpResult;
-    }
-
-    /**
-     * 带参数的Delete请求
-     */
-    public static HttpResult doDelete(String url, Map<String, Object> map) throws Exception
-    {
-
-        // 声明URIBuilder
-        URIBuilder uriBuilder = new URIBuilder(url);
-
-        // 判断参数map是否为非空
-        if (map != null)
-        {
-            // 遍历参数
-            for (Map.Entry<String, Object> entry : map.entrySet())
-            {
-                // 设置参数
-                uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
-            }
-        }
-
-        // 2 创建httpGet对象，相当于设置url请求地址
-        HttpDelete httpDelete = new HttpDelete(uriBuilder.build());
-
-        // 3 使用HttpClient执行httpGet，相当于按回车，发起请求
-        CloseableHttpResponse response = httpClient.execute(httpDelete);
-
-        // 4 解析结果，封装返回对象httpResult，相当于显示相应的结果
-        // 状态码
-        // response.getStatusLine().getStatusCode();
-        // 响应体，字符串，如果response.getEntity()为空，下面这个代码会报错,所以解析之前要做非空的判断
-        // EntityUtils.toString(response.getEntity(), "UTF-8");
-        HttpResult httpResult = null;
-        // 解析数据封装HttpResult
-        if (response.getEntity() != null)
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(),
-                    EntityUtils.toString(response.getEntity(), "UTF-8"));
-        }
-        else
-        {
-            httpResult = new HttpResult(response.getStatusLine().getStatusCode(), "");
-        }
-
-        // 返回
-        return httpResult;
-    }
-
-    /**
-     * 返回常用请求头
+     * Http请求的GET方法
+     * @param url 请求地址
+     * @param parameters 请求参数，键值对形式
      * @return
      */
-    public static Map<String, String> commentHeader()
-    {
-        Map<String, String> map = new HashMap<>();
-        map.put("Content-Type", "application/json");
-        return map;
+    public static String ToGet(String url, List<NameValuePair> parameters) {
+        try {
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            for (int i = 0; i < parameters.size(); i++) {
+                if (i == 0) {
+                    url += "?";
+                } else {
+                    url += "&";
+                }
+                NameValuePair nameValuePair = parameters.get(i);
+                String name = nameValuePair.getName();
+                String value = nameValuePair.getValue();
+                url += name + "=" + value;
+            }
+            HttpGet get = new HttpGet(url);
+            CloseableHttpResponse response = null;
+            response = httpClient.execute(get);
+            String result = EntityUtils.toString(response.getEntity());
+            System.out.println(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "接口返回异常";
     }
+
+    /**
+     * Http请求的GET方法
+     * @param url 请求地址
+     * @return
+     */
+    public static String ToGet(String url) {
+        List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+        ToGet(url, parameters);
+        return "==";
+    }
+
+    /**
+     * HTTP请求的POST方法
+     * @param url 请求地址
+     * @param parameters 请求参数，键值对形式
+     * @return
+     */
+    public static String ToPost(String url, List<NameValuePair> parameters) {
+        try {
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpPost post = new HttpPost(url);
+            String result = null;
+            post.setEntity(new UrlEncodedFormEntity(parameters));
+            CloseableHttpResponse response = httpClient.execute(post);
+            String resutl = EntityUtils.toString(response.getEntity());
+            System.out.println(result);
+            response.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "接口返回异常";
+
+    }
+
+    @Test
+    public void f() {
+        List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+        String url = "https://fc3dd024-bbf2-4023-ab27-fcba2569c8ae.mock.pstmn.io";
+        ToGet(url);
+    }
+
+    @Test
+    public void f1() {
+        List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+        parameters.add(new BasicNameValuePair("nickname", "18612266860"));
+        parameters.add(new BasicNameValuePair("password", "dc483e80a7a0bd9ef71d8cf973673924"));
+        String url = "http://test.lemonban.com/lmcanon_web_auto/mvc/member/api/member/login";
+        ToPost(url, parameters);
+    }
+
 }
