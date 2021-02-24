@@ -50,21 +50,31 @@ public class OkHttpClientUtils {
 
     private static OkHttpClient okHttpClient = null;
 
-    /** application/x-www-form-urlencoded utf-8 */
+    /**
+     * application/x-www-form-urlencoded utf-8
+     */
     private static final String MEDIA_TYPE_FORM_UTF_8 =
             "application/x-www-form-urlencoded; charset=UTF-8";
 
-    /** application/jason utf-8 */
+    /**
+     * application/jason utf-8
+     */
     private static final String MEDIA_TYPE_JSON_UTF_8 = "application/json; charset=UTF-8";
 
-    /** text/xml utf-8 */
+    /**
+     * text/xml utf-8
+     */
     private static final String MEDIA_TYPE_XML_UTF_8 = "text/xml; charset=UTF-8";
 
-    /** USER_AGENT */
+    /**
+     * USER_AGENT
+     */
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36";
 
-    /** ACCEPT */
+    /**
+     * ACCEPT
+     */
     private static final String ACCEPT =
             "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
 
@@ -121,7 +131,7 @@ public class OkHttpClientUtils {
         try {
             trustManager = trustManagerForCertificates(trustedCertificatesInputStream(certificate));
             SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, new TrustManager[] { trustManager }, null);
+            sslContext.init(null, new TrustManager[]{trustManager}, null);
             sslSocketFactory = sslContext.getSocketFactory();
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
@@ -304,9 +314,9 @@ public class OkHttpClientUtils {
     }
 
     private static Request.Builder withBaseRequestBuilder() {
-        //String traceId = WebContextHolder.getTraceId();
-        String traceId = UuidGeneratorUtils.getNextId();
-        logger.info("--->>>withBaseRequestBuilder traceId:{}", traceId);
+//        String traceId = WebContextHolder.getTraceId();
+//        String traceId = UuidGeneratorUtils.getNextId();
+//        logger.info("--->>>withBaseRequestBuilder traceId:{}", traceId);
         Request.Builder requestBuilder = new Request.Builder()
                 .removeHeader("User-Agent")
                 .addHeader("trace_id", traceId)
