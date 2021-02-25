@@ -20,7 +20,7 @@ public class HttpClientUtil {
     /**
      * Http请求的GET方法
      * @param url 输入请求的url
-     * @param parameters 请求参数，keyvalue格式
+     * @param parameters 请求参数，keyvalue格式，合并到目标分支
      * @return
      */
     public static String ToGet(String url, List<NameValuePair> parameters) {
