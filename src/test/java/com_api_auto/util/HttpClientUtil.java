@@ -19,8 +19,8 @@ public class HttpClientUtil {
 
     /**
      * Http请求的GET方法
-     * @param url 请求地址
-     * @param parameters 请求参数，键值对形式
+     * @param url 输入请求的url
+     * @param parameters 请求参数，keyvalue格式
      * @return
      */
     public static String ToGet(String url, List<NameValuePair> parameters) {
