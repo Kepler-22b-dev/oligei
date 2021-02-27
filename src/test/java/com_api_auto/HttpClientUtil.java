@@ -1,6 +1,5 @@
 package com_api_auto;
 
-import org.apache.commons.collections4.bag.SynchronizedSortedBag;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -16,14 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com_api_auto.HttpClientUtil.ToGet;
-
 public class HttpClientUtil {
 
     /**
      * Http请求的GET方法
-     * @param url 请求地址
-     * @param parameters 请求参数，键值对形式
+     * @param url 输入请求的url
+     * @param parameters 请求参数，keyvalue格式，合并到目标分支，哈哈哈
      * @return
      */
     public static String ToGet(String url, List<NameValuePair> parameters) {

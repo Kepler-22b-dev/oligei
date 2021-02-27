@@ -435,31 +435,33 @@ public class OkHttpClientUtils {
     public static void main(String[] args) {
 
         String url = "https://api.mch.weixin.qq.com/pay/orderquery";
-        String requestXml = "<xml>\n" +
-                "\t<appid><![CDATA[wx605913f0d745edb2]]></appid>\n" +
-                "\t<attach><![CDATA[137957232784630050%2C1630275542969548801%2C3719542b-f57e-44b0" +
-                "-bad7-fc946077a204]]></attach>\n" +
-                "\t<body><![CDATA[金贝支付-102001080000000450]]></body>\n" +
-                "\t<detail><![CDATA[开发商订单号-3719542b-f57e-44b0-bad7-fc946077a204]]></detail>\n" +
-                "\t<mch_id><![CDATA[1480005102]]></mch_id>\n" +
-                "\t<nonce_str><![CDATA[99575143697838410296]]></nonce_str>\n" +
-                "\t<notify_url><![CDATA[http://w.frp.qinxi1992" +
-                ".cn/rest/pay/notify/wxpay/137957232784630050/102001080000000450]]></notify_url" +
-                ">\n" +
-                "\t<out_trade_no><![CDATA[102001080000000450]]></out_trade_no>\n" +
-                "\t<spbill_create_ip><![CDATA[10.12.57.206]]></spbill_create_ip>\n" +
-                "\t<total_fee><![CDATA[1]]></total_fee>\n" +
-                "\t<trade_type><![CDATA[APP]]></trade_type>\n" +
-                "\t<sign>EC44E24F42592104D14C7DFA37B95E28</sign>\n" +
-                "</xml>";
+//        String requestXml = "<xml>\n" +
+//                "\t<appid><![CDATA[wx605913f0d745edb2]]></appid>\n" +
+//                "\t<attach><![CDATA[137957232784630050%2C1630275542969548801%2C3719542b-f57e-44b0" +
+//                "-bad7-fc946077a204]]></attach>\n" +
+//                "\t<body><![CDATA[金贝支付-102001080000000450]]></body>\n" +
+//                "\t<detail><![CDATA[开发商订单号-3719542b-f57e-44b0-bad7-fc946077a204]]></detail>\n" +
+//                "\t<mch_id><![CDATA[1480005102]]></mch_id>\n" +
+//                "\t<nonce_str><![CDATA[99575143697838410296]]></nonce_str>\n" +
+//                "\t<notify_url><![CDATA[http://w.frp.qinxi1992" +
+//                ".cn/rest/pay/notify/wxpay/137957232784630050/102001080000000450]]></notify_url" +
+//                ">\n" +
+//                "\t<out_trade_no><![CDATA[102001080000000450]]></out_trade_no>\n" +
+//                "\t<spbill_create_ip><![CDATA[10.12.57.206]]></spbill_create_ip>\n" +
+//                "\t<total_fee><![CDATA[1]]></total_fee>\n" +
+//                "\t<trade_type><![CDATA[APP]]></trade_type>\n" +
+//                "\t<sign>EC44E24F42592104D14C7DFA37B95E28</sign>\n" +
+//                "</xml>";
+
 
         /*try {
             //requestXml = new String(requestXml.getBytes("utf-8"), "ISO8859-1");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }*/
-
-        String responseXml = OkHttpClientUtils.postXmlBody(url, requestXml);
+        Map<String, Object> queries = new HashMap<String, Object>();
+        queries.
+//        String responseXml = OkHttpClientUtils.postXmlBody(url, requestXml);
 
         System.out.println(responseXml);
     }
