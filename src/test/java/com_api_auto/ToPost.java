@@ -62,12 +62,16 @@ public class ToPost {
     }
 
 
-    @Test
-    public void f() throws UnsupportedEncodingException {
+    public static void main(String[] args) {
         post();
 //        System.out.println("======");
         String url = "https://177976bb-66ae-483b-8a26-c1943670c85a.mock.pstmn.io";
-        StringEntity stringEntity = new StringEntity("{name: \"google\"}");
+        StringEntity stringEntity = null;
+        try {
+            stringEntity = new StringEntity("{name: \"google\"}");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         Map<String, String> header = new HashMap<String, String>();
 //        header.put("content-type","application/json");
         header.put("host","177976bb-66ae-483b-8a26-c1943670c85a.mock.pstmn.io");
