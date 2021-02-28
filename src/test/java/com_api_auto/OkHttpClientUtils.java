@@ -459,10 +459,10 @@ public class OkHttpClientUtils {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }*/
-        Map<String, Object> queries = new HashMap<String, Object>();
-        queries.
-//        String responseXml = OkHttpClientUtils.postXmlBody(url, requestXml);
-
-        System.out.println(responseXml);
+//        Map<String, Object> queries = new HashMap<String, Object>();
+//        queries.
+////        String responseXml = OkHttpClientUtils.postXmlBody(url, requestXml);
+//
+//        System.out.println(responseXml);
     }
 }
