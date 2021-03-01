@@ -19,8 +19,11 @@ public class HttpUtilForPost {
 
         private static void ToPostbyFormEntity(String url, Map<String, String> parameterMap) throws IOException {
             CloseableHttpClient httpClient = HttpClients.createDefault();
+            //以键值对的形式存放入参到list列表中；
             List<NameValuePair> parameters = new ArrayList<>();
+            //获取map的key值，并存放在set集合中；
             Set<String> keySet = parameterMap.keySet();
+            //遍历生成的set，将获取到的key值添加到list中
             for (String Key : keySet) {
                 parameters.add(new BasicNameValuePair(Key, parameterMap.get(Key)));
             }
