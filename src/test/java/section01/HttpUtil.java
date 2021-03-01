@@ -1,6 +1,5 @@
 package section01;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
