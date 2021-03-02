@@ -8,6 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -18,8 +19,8 @@ import java.util.Set;
 
 public class HttpUtilForGet {
 
-
-    private void get(String url, HashMap<String, String> parametersMap) {
+    private static Logger logger = Logger.getLogger(HttpUtilForGet.class);
+    private void get(String url, HashMap<String, String> parametersMap) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         List<NameValuePair> parameters = new ArrayList<>();
@@ -47,25 +48,20 @@ public class HttpUtilForGet {
             url +="?" + forequarters;
         }
         HttpGet get = new HttpGet(url);
-        try {
+
             CloseableHttpResponse closeableHttpResponse = httpClient.execute(get);
             String closeableHttpResponseString = EntityUtils.toString(closeableHttpResponse.getEntity());
             System.out.println(closeableHttpResponseString);
-        } catch (IOException e) {
-            //TODO 日志补充
-//            Logger logger = Logger.getLogger("请求结果为空");
         }
-    }
 
     @Test
-    public void f() {
-        String url = "http://api.sap.ucarinc.com/ucarsap/getCheckInfoList";
+    public void f() throws IOException {
+        String url = "http://api.sap.ucarinc.com/ucarsap/getCheckInfoList1111";
         HashMap<String, String> parametersMap = new HashMap<>();
         parametersMap.put("employeeCode", "10005598");
         parametersMap.put("beginDate", "2021-02-01");
         parametersMap.put("endDate", "2021-02-28");
         parametersMap.put("tdsourcetag", "s_pctim_aiomsg");
         get(url, parametersMap);
-
     }
 }
