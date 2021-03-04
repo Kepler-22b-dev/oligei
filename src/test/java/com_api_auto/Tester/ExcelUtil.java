@@ -9,7 +9,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-
+/**
+ * 横是行，竖是列
+ */
 public class ExcelUtil {
     public static Object[][] readExcel(String excelPath, int sheetIndex, int startRow, int endRow, int startCell, int endCell) {
         Object[][] datas = new Object[endRow - startRow + 1][endCell - startCell + 1];
@@ -31,7 +33,6 @@ public class ExcelUtil {
                     datas[i - startRow][j - startCell] = cellValue;
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,9 +42,9 @@ public class ExcelUtil {
     public static void main(String[] args) {
         Object[][] datas = readExcel("/DataProvides.xlsx",
                 1,
-                1,
-                8,
                 2,
+                8,
+                1,
                 5);
         for (Object[] data : datas) {
             for (Object datum : data) {
