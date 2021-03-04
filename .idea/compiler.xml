@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="com_compass_apiauto" />
         <module name="com_api_auto" />
+        <module name="com_compass_apiauto" />
       </profile>
     </annotationProcessing>
   </component>
