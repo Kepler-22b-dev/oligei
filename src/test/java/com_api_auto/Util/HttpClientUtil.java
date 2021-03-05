@@ -1,4 +1,4 @@
-package com_api_auto;
+package com_api_auto.Util;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;

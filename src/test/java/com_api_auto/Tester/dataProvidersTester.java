@@ -3,7 +3,7 @@ package com_api_auto.Tester;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
 
-import static com_api_auto.util.ExcelUtil.readExcel;
+import static com_api_auto.Util.ExcelUtil.readExcel;
 
 /**
  * 数据提供者测试类

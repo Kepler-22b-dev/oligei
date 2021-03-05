@@ -1,4 +1,4 @@
-package com_api_auto.util;
+package com_api_auto.Util;
 
 import org.apache.http.Header;
 import org.apache.http.NameValuePair;
