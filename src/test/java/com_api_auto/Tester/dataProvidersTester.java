@@ -10,7 +10,7 @@ import static com_api_auto.Util.ExcelUtil.readExcel;
  */
 public class dataProvidersTester {
     @Test(dataProvider = "getdatas")
-    public void f(String apiID, String apiname, String methon, String requestData, String expectData) {
+    public void DataProvidersTester(String apiID, String apiname, String methon, String requestData, String expectData) {
         System.out.println(apiID + ";" + apiname + ";" + methon + ";" + requestData + ";" + expectData);
     }
 
