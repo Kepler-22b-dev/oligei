@@ -9,13 +9,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-/****
-*Author:陈建烨
-*Time:下午5:48:17
-*Date：2018年8月30日
-*Function:
-*****/
-
 /*
  * 调用表格工具类，未去除表头第一行
  */
@@ -60,7 +53,7 @@ public  static Object[][] readExcel(String excelPath,int sheetIndex){
 	}
 
 public static void main(String[] args) {
-	Object[][] datas=readExcel("/testcase/login_DataProvider.xlsx", 1);
+	Object[][] datas=readExcel("/DataProvides.xlsx", 1);
 	for (Object[] objects : datas) {
 		for (Object object : objects) {
 			System.out.print(object+",");

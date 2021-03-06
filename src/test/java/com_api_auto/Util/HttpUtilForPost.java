@@ -17,7 +17,7 @@ import java.util.*;
 
 public class HttpUtilForPost {
 
-        private static void ToPostbyFormEntity(String url, Map<String, String> parameterMap) throws IOException {
+        public static void ToPostbyFormEntity(String url, Map<String, String> parameterMap) throws IOException {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             //以键值对的形式存放入参到list列表中；
             List<NameValuePair> parameters = new ArrayList<>();
