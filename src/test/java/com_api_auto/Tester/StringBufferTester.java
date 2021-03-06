@@ -1,4 +1,4 @@
-package com_api_auto.Util;
+package com_api_auto.Tester;
 //master
 public class StringBufferTester {
     public static void main(String[] args) {
