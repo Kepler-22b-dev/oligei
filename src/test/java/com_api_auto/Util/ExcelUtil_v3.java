@@ -12,6 +12,12 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelUtil_v3 {
 
+    /**
+     *
+     * @param excelPath  传入Excel文件的目录
+     * @param sheetIndex 传入sheet，以1开始
+     * @return
+     */
     public static Object[][] readExcel(String excelPath, int sheetIndex) {
         Object[][] datas = null;
 
@@ -21,9 +27,7 @@ public class ExcelUtil_v3 {
             Sheet sheet = workbook.getSheetAt(sheetIndex - 1);
 
             int lastRowNum = sheet.getLastRowNum();
-            //长度不+1，是去掉表头第一行
             datas = new Object[lastRowNum][];
-            //去除表头第一行，i=1
             for (int i = 1; i <= lastRowNum; i++) {
                 Row row = sheet.getRow(i);
                 int lastCellNum = row.getLastCellNum();

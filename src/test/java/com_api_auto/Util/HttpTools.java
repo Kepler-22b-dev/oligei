@@ -15,9 +15,8 @@ import java.util.*;
 
 public class HttpTools {
 
-    public void get(String url, HashMap<String, String> parametersMap) throws IOException {
+    public static void get(String url, Map<String, String> parametersMap) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-
         List<NameValuePair> parameters = new ArrayList<>();
         Set<String> keySets = parametersMap.keySet();
         for (String key : keySets) {
