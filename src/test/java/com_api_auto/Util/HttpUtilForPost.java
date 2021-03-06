@@ -2,6 +2,7 @@ package com_api_auto.Util;
 
 import org.apache.http.Header;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -17,7 +18,7 @@ import java.util.*;
 
 public class HttpUtilForPost {
 
-        public static void ToPostbyFormEntity(String url, Map<String, String> parameterMap) throws IOException {
+        public static void post(String url, Map<String, String> parameterMap) throws IOException {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             //以键值对的形式存放入参到list列表中；
             List<NameValuePair> parameters = new ArrayList<>();
@@ -35,13 +36,11 @@ public class HttpUtilForPost {
             }
             HttpPost post = new HttpPost(url);
             CloseableHttpResponse HttpResponse = httpClient.execute(post);
-            Header[] allHeaders = HttpResponse.getAllHeaders();
-            for (Header allHeader : allHeaders) {
-                System.out.println(allHeader.getName() + ":" + allHeader.getValue());
-            }
+            int statusCode = HttpResponse.getStatusLine().getStatusCode();
+            System.out.println(statusCode);
         }
 
-        public static void ToPostbyJSON(String url, String JSONString) throws IOException {
+        public static void post(String url, String JSONString) throws IOException {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpPost post = new HttpPost(url);
             StringEntity stringEntity = new StringEntity(JSONString);
@@ -55,7 +54,7 @@ public class HttpUtilForPost {
         public void f2() throws IOException {
             String url = "https://177976bb-66ae-483b-8a26-c1943670c85a.mock.pstmn.io";
             String string = "{\"name\":\"google\"}";
-            ToPostbyJSON(url, string);
+            post(url, string);
         }
 
         @Test
@@ -64,7 +63,7 @@ public class HttpUtilForPost {
             Map<String, String> parameterMap = new HashMap<>();
             parameterMap.put("nickname","18612266860");
             parameterMap.put("password","dc483e80a7a0bd9ef71d8cf973673924");
-            ToPostbyFormEntity(url,parameterMap);
+            post(url,parameterMap);
         }
     }
 
