@@ -9,13 +9,13 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
 import java.util.*;
 
 public class HttpTools {
 
-    public static void get(String url, Map<String, String> parametersMap) throws IOException {
+    public static String get(String url, Map<String, String> parametersMap) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         List<NameValuePair> parameters = new ArrayList<>();
         Set<String> keySets = parametersMap.keySet();
@@ -31,11 +31,11 @@ public class HttpTools {
         HttpGet get = new HttpGet(url);
 
         CloseableHttpResponse closeableHttpResponse = httpClient.execute(get);
-        String closeableHttpResponseString = EntityUtils.toString(closeableHttpResponse.getEntity());
-        System.out.println(closeableHttpResponseString);
+        String StatusLine = closeableHttpResponse.getStatusLine().toString();
+        return StatusLine;
     }
 
-    public static void post(String url, Map<String, String> parameterMap) throws IOException {
+    public static String post(String url, Map<String, String> parameterMap) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         //以键值对的形式存放入参到list列表中；
         List<NameValuePair> parameters = new ArrayList<>();
@@ -53,17 +53,17 @@ public class HttpTools {
         }
         HttpPost post = new HttpPost(url);
         CloseableHttpResponse HttpResponse = httpClient.execute(post);
-        int statusCode = HttpResponse.getStatusLine().getStatusCode();
-        System.out.println(statusCode);
+        String StatusLine = HttpResponse.getStatusLine().toString();
+        return StatusLine;
     }
 
-    public static void post(String url, String JSONString) throws IOException {
+    public static String post(String url, String JSONString) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost post = new HttpPost(url);
         StringEntity stringEntity = new StringEntity(JSONString);
         post.setEntity(stringEntity);
         CloseableHttpResponse HttpResponse = httpClient.execute(post);
-        String result = EntityUtils.toString(HttpResponse.getEntity());
-        System.out.println(result);
+        String StatusLine = HttpResponse.getStatusLine().toString();
+        return StatusLine;
     }
 }

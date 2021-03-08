@@ -10,14 +10,17 @@ public class ApiUtil {
 
     //合理使用资源
     static {
-        Object[][] datas = ExcelUtil_v3.readExcel("/ApiInfo.xlsx", 1);
+        Object[][] datas = ExcelUtil_v3.readExcel("/testcase/ApiInfo.xlsx", 1);
         for (Object[] data : datas) {
             ApiInfo apiInfo = new ApiInfo();
             String ApiId = data[0].toString();
             apiInfo.setApiId(ApiId);
+            apiInfo.setApiName(data[2].toString());
             apiInfo.setApiName(data[1].toString());
-            apiInfo.setType(data[2].toString());
-            apiInfo.setURL(data[3].toString());
+            apiInfo.setType(data[3].toString());
+            apiInfo.setURL(data[4].toString());
+            apiInfo.setRequestData(data[5].toString());
+
 //            System.out.println(apiInfo);
             apiInfoMap.put(data[0].toString(), apiInfo);
         }

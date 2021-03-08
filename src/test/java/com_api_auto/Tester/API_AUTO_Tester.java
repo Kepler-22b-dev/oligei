@@ -2,30 +2,35 @@ package com_api_auto.Tester;
 
 import com.alibaba.fastjson.JSONObject;
 import com_api_auto.Util.ApiUtil;
-import com_api_auto.Util.ExcelUtil_v3;
+import com_api_auto.Util.HttpTools;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.util.Map;
-import static com_api_auto.Util.HttpTools.get;
-import static com_api_auto.Util.HttpTools.post;
+
+import static com_api_auto.Util.ExcelUtil_v3.*;
 
 public class API_AUTO_Tester {
 
     @Test(dataProvider = "getDatas")
-    public void login(String CaseID, String ApiId, String RequestData) throws IOException {
-        String url = ApiUtil.getUrlByApiId(ApiId);
+    public void login(String ApiId, String CaseID, String ApiName, String Type, String URL, String RequestData) throws IOException {
+        String Url = ApiUtil.getUrlByApiId(ApiId);
         Map<String, String> parameterMap = (Map<String, String>) JSONObject.parse(RequestData);
         String type = ApiUtil.getRequestTypeByApiId(ApiId);
+        String result = " ";
         if ("post".equalsIgnoreCase(type)) {
-            post(url, parameterMap);
-        } else
-            get(url, parameterMap);
+            result = HttpTools.post(URL, parameterMap);
+        } else {
+            result = HttpTools.get(URL, parameterMap);
+        }
+        System.out.println(result);
+//        WriteData("/testcase/ApiInfo.xlsx",1,CaseID,5,result);
     }
 
     @DataProvider()
-    public static Object[][] getDatas() {
-        Object[][] datas = ExcelUtil_v3.readExcel("/ApiInfo.xlsx", 2);
+    public static Object[] getDatas() {
+        Object[][] datas = readExcel("/testcase/ApiInfo.xlsx", 1);
         return datas;
     }
 

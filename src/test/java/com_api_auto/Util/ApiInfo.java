@@ -1,5 +1,7 @@
 package com_api_auto.Util;
 
+import java.security.PublicKey;
+
 public class ApiInfo {
     //ApiId(接口编号)
     public String ApiId;
@@ -9,6 +11,38 @@ public class ApiInfo {
     public String Type;
     // URL（接口地址）
     public String URL;
+
+    @Override
+    public String toString() {
+        return "ApiInfo{" +
+                "ApiId='" + ApiId + '\'' +
+                ", ApiName='" + ApiName + '\'' +
+                ", Type='" + Type + '\'' +
+                ", URL='" + URL + '\'' +
+                ", CaseID='" + CaseID + '\'' +
+                ", RequestData='" + RequestData + '\'' +
+                '}';
+    }
+
+    public String getCaseID() {
+        return CaseID;
+    }
+
+    public void setCaseID(String caseID) {
+        CaseID = caseID;
+    }
+
+    public String CaseID;
+
+    public String getRequestData() {
+        return RequestData;
+    }
+
+    public void setRequestData(String requestData) {
+        RequestData = requestData;
+    }
+
+    public  String RequestData;
 
     public String getApiId() {
         return ApiId;
@@ -40,16 +74,6 @@ public class ApiInfo {
 
     public void setURL(String URL) {
         this.URL = URL;
-    }
-
-    @Override
-    public String toString() {
-        return "apiInfo{" +
-                "ApiId='" + ApiId + '\'' +
-                ", ApiName='" + ApiName + '\'' +
-                ", Type='" + Type + '\'' +
-                ", URL='" + URL + '\'' +
-                '}';
     }
 
 }
