@@ -3,15 +3,18 @@ package com_api_auto.Util;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ApiUtil {
 
-    private static Map<String, ApiInfo> apiInfoMap = new HashMap<>();
+    //并发用ConcurrentHashMap；
+
+    private static Map<String, ApiInfo> apiInfoMap = new ConcurrentHashMap<>();
 
     //合理使用资源
     static {
-        Object[][] datas = ExcelUtil_v3.readExcel("/testcase/ApiInfo.xlsx", 1);
-        for (Object[] data : datas) {
+        String[][] datas = (String[][]) ExcelUtil_v3.readExcel("/testcase/ApiInfo.xlsx", 1);
+        for (String[] data : datas) {
             ApiInfo apiInfo = new ApiInfo();
             String ApiId = data[0].toString();
             apiInfo.setApiId(ApiId);
