@@ -1,6 +1,7 @@
 package com_api_auto.Util;
 
-import java.util.HashMap;
+import com_api_auto.ApiInfo;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,8 +24,6 @@ public class ApiUtil {
             apiInfo.setType(data[3].toString());
             apiInfo.setURL(data[4].toString());
             apiInfo.setRequestData(data[5].toString());
-
-//            System.out.println(apiInfo);
             apiInfoMap.put(data[0].toString(), apiInfo);
         }
     }

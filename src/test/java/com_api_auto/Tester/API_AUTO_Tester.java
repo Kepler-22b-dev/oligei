@@ -1,8 +1,11 @@
 package com_api_auto.Tester;
 
 import com.alibaba.fastjson.JSONObject;
+import com_api_auto.CellData;
 import com_api_auto.Util.ApiUtil;
+import com_api_auto.Util.ExcelUtil_v3;
 import com_api_auto.Util.HttpTools;
+import com_api_auto.base.BaseTester;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -11,7 +14,7 @@ import java.util.Map;
 
 import static com_api_auto.Util.ExcelUtil_v3.*;
 
-public class API_AUTO_Tester {
+public class API_AUTO_Tester extends BaseTester {
 
     @Test(dataProvider = "getDatas")
     public void login(String ApiId, String CaseID, String ApiName, String Type, String URL, String RequestData) throws IOException {
@@ -24,8 +27,9 @@ public class API_AUTO_Tester {
         } else {
             result = HttpTools.get(URL, parameterMap);
         }
-        System.out.println(result);
-        WriteData("target/test-classes/ApiInfo.xlsx",1,CaseID,7,result);
+//        System.out.println(result);
+//        WriteData("target/test-classes/ApiInfo.xlsx",1,CaseID,7,result);
+        dataToWriteList.add(new CellData(CaseID,7,result));
     }
 
     @DataProvider()
