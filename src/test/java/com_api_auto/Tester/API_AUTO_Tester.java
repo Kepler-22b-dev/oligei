@@ -25,7 +25,7 @@ public class API_AUTO_Tester {
             result = HttpTools.get(URL, parameterMap);
         }
         System.out.println(result);
-        WriteData("target/test-classes/testcase/ApiInfo.xlsx",1,CaseID,7,result);
+        WriteData("target/test-classes/ApiInfo.xlsx",1,CaseID,7,result);
     }
 
     @DataProvider()

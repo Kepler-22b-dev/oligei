@@ -31,8 +31,8 @@ public class HttpTools {
         HttpGet get = new HttpGet(url);
 
         CloseableHttpResponse closeableHttpResponse = httpClient.execute(get);
-        String StatusLine = closeableHttpResponse.getStatusLine().toString();
-        return StatusLine;
+        String AllHeaders = closeableHttpResponse.getAllHeaders().toString();
+        return AllHeaders;
     }
 
     public static String post(String url, Map<String, String> parameterMap) throws IOException {
